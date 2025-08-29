@@ -5,7 +5,8 @@ import page.MainPage;
 public class MainPageSteps {
     private MainPage mainPage;
 
-    public MainPageSteps(MainPage mainPage) {
+    public MainPageSteps(MainPage mainPage)
+    {
         this.mainPage = mainPage;
     }
 

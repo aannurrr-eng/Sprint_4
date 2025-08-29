@@ -43,6 +43,18 @@ public class OrderPage extends BasePage{
     //Всплывающее окно об успешном создании заказа
     private By sucsessWindow = By.xpath(".//div[contains(text(),'Заказ оформлен')]");
 
+    //Ошибка имени
+    private By nameError = By.xpath(".//div[text()='Введите корректное имя']");
+    //Ошибка фамилии
+    private By surnameError = By.xpath(".//div[text()='Введите корректную фамилию']");
+    //Ошибка адреса
+    private By addressError = By.xpath(".//div[text()='Введите корректный адрес']");
+    //Ошибка метро
+    private By metroError = By.xpath(".//div[text()='Выберите станцию']");
+    //Ошибка телефона
+    private By phoneError = By.xpath(".//div[text()='Введите корректный номер']");
+
+
     public OrderPage(WebDriver driver) {
         super(driver);
     }
@@ -68,9 +80,11 @@ public class OrderPage extends BasePage{
     public void fillMetro(String metro)
     {
         driver.findElement(metroInput).click();
-        WebElement el = driver.findElement(metroList).findElement(By.xpath(String.format(".//button[.//text()='%s']", metro)));
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", el);
-        el.click();
+        List<WebElement> list = driver.findElement(metroList).findElements(By.xpath(String.format(".//button[.//text()='%s']", metro)));
+        if (list.isEmpty())
+            return;
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", list.get(0));
+        list.get(0).click();
     }
 
     public void fillPhone(String phone)
@@ -125,11 +139,11 @@ public class OrderPage extends BasePage{
                 month = "декабрь";
                 break;
         }
-        String monthYear = month + " " + String.valueOf(date.getYear());
+        String monthYear = month + " " + date.getYear();
         while (!divWithDatePicker.findElement(By.className("react-datepicker__current-month")).getText().equals(monthYear)) {
             divWithDatePicker.findElement(By.xpath(".//button[text()='Next Month']")).click();
         }
-        List<WebElement> els =  divWithDatePicker.findElements(By.xpath(String.format(".//div[text()='%s']", String.valueOf(date.getDayOfMonth()) )));
+        List<WebElement> els =  divWithDatePicker.findElements(By.xpath(String.format(".//div[text()='%d']", date.getDayOfMonth()) ));
         WebElement el = (date.getDayOfMonth() < 20 ? els.get(0) : els.get(els.size() - 1));
         el.click();
     }
@@ -153,6 +167,8 @@ public class OrderPage extends BasePage{
 
     public boolean isSucsessWindowVisible()
     {
+        if (driver.findElements(sucsessWindow).isEmpty())
+            return false;
         return driver.findElement(sucsessWindow).isDisplayed();
     }
 
@@ -171,4 +187,62 @@ public class OrderPage extends BasePage{
         driver.findElement(yesBtn).click();
     }
 
+    public boolean isNameErrorVisible()
+    {
+        if (driver.findElements(nameError).isEmpty())
+            return false;
+        return driver.findElement(nameError).isDisplayed();
+    }
+
+    public boolean isSurnameErrorVisible()
+    {
+        if (driver.findElements(surnameError).isEmpty())
+            return false;
+        return driver.findElement(surnameError).isDisplayed();
+    }
+
+    public boolean isAddressErrorVisible()
+    {
+        if (driver.findElements(addressError).isEmpty())
+            return false;
+        return driver.findElement(addressError).isDisplayed();
+    }
+
+    public boolean isMetroErrorVisible()
+    {
+        if (driver.findElements(metroError).isEmpty())
+            return false;
+        return driver.findElement(metroError).isDisplayed();
+    }
+
+    public boolean isPhoneErrorVisible()
+    {
+        if (driver.findElements(phoneError).isEmpty())
+            return false;
+        return driver.findElement(phoneError).isDisplayed();
+    }
+
+    public boolean isDateErrorVisible()
+    {
+        //TODO
+        return false;
+    }
+
+    public boolean isRentalPeriodErrorVisible()
+    {
+        //TODO
+        return false;
+    }
+
+    public boolean isColourErrorVisible()
+    {
+        //TODO
+        return false;
+    }
+
+    public boolean isCommentErrorVisible()
+    {
+        //TODO
+        return false;
+    }
 }

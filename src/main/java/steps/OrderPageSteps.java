@@ -7,7 +7,14 @@ import java.time.LocalDate;
 public class OrderPageSteps {
     private OrderPage orderPage;
 
-    public OrderPageSteps(OrderPage orderPage) {
+    private final String corrName = "Василий";
+    private final String corrSurname = "Дмитриев";
+    private final String corrAddress = "ул. Полянка";
+    private final String corrMetro = "Красносельская";
+    private final String corrPhone = "89098887766";
+
+    public OrderPageSteps(OrderPage orderPage)
+    {
         this.orderPage = orderPage;
     }
 
@@ -19,6 +26,7 @@ public class OrderPageSteps {
         orderPage.fillMetro(metro);
         orderPage.fillPhone(phone);
     }
+
     public void setRentalData(LocalDate date, int rentalPeriod, String colour, String comment)
     {
         orderPage.fillDate(date);
@@ -26,6 +34,7 @@ public class OrderPageSteps {
         orderPage.fillColour(colour);
         orderPage.fillComment(comment);
     }
+
     public void makeOrder(String name, String surname, String address, String metro, String phone,
                           LocalDate date, int rentalPeriod, String colour, String comment)
     {
@@ -35,4 +44,14 @@ public class OrderPageSteps {
         orderPage.clickOrderButton();
         orderPage.clickYesButton();
     }
+
+    public void setCorrectUserData()
+    {
+        orderPage.fillName(corrName);
+        orderPage.fillSurname(corrSurname);
+        orderPage.fillAddress(corrAddress);
+        orderPage.fillMetro(corrMetro);
+        orderPage.fillPhone(corrPhone);
+    }
+
 }

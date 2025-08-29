@@ -31,7 +31,8 @@ public class BaseTest {
         mainPage.openPage();
     }
 
-    private void startBrowserFirefox() {
+    private void startBrowserFirefox()
+    {
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions options = new FirefoxOptions();
         String firefoxPath = System.getenv("FIREFOX_PATH");
@@ -41,7 +42,8 @@ public class BaseTest {
         driver = new FirefoxDriver(options);
     }
 
-    private void startBrowserChrome() {
+    private void startBrowserChrome()
+    {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
     }

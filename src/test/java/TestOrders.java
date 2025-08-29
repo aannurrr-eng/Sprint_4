@@ -43,8 +43,8 @@ public class TestOrders extends BaseTest {
     public static Object[][] getData()
     {
         return new Object[][]{
-                {"Ирина", "Кутузова", "Москва1", "Тропарёво", "89898887766", LocalDate.now().plusDays(5), RentalPeriod.DAYS3, Colour.BLACK, "Коммент1"},
-                {"Иван", "Васильев", "Москва2", "Румянцево", "89098887764", LocalDate.now().plusDays(5), RentalPeriod.DAY1, Colour.GRAY, "Коммент2"}
+                {"Ирина", "Кутузова", "Москва1", "Тропарёво", "89898887766", LocalDate.now().plusDays(1), RentalPeriod.DAYS3, Colour.BLACK, "Коммент1"},
+                {"Иван", "Васильев", "Москва2", "Румянцево", "+79098887764", LocalDate.now().plusDays(5), RentalPeriod.DAY1, Colour.GRAY, "Коммент2"}
                 };
     }
 
@@ -57,7 +57,7 @@ public class TestOrders extends BaseTest {
     }
 
     @Test
-    public void OrderInHeaderTest()
+    public void orderInHeaderTest()
     {
         mainPage.clickOrderInHeaderBtn();
         orderPageSteps.makeOrder(name, surname, address, metro, phone, date, rentalPeriod, colour, comment);
@@ -65,7 +65,7 @@ public class TestOrders extends BaseTest {
     }
 
     @Test
-    public void OrderInBottomTest()
+    public void orderInBottomTest()
     {
         mainPage.clickOrderInBottomBtn();
         orderPageSteps.makeOrder(name, surname, address, metro, phone, date, rentalPeriod, colour, comment);

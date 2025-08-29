@@ -3,7 +3,6 @@ package browser;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import page.BasePage;
 
 import java.time.Duration;
 
@@ -23,8 +22,7 @@ public class Browser {
 
     public int countOfTabs()
     {
-        Object[] windowHandles = driver.getWindowHandles().toArray();
-        return windowHandles.length;
+        return driver.getWindowHandles().toArray().length;
     }
 
 }

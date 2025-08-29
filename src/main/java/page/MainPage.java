@@ -38,6 +38,7 @@ public class MainPage extends BasePage {
     {
         super(driver);
     }
+
     public void openPage()
     {
         driver.get(HOME_URL);
