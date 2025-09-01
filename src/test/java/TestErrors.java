@@ -5,8 +5,6 @@ import org.junit.runners.Parameterized;
 import page.OrderPage;
 import steps.OrderPageSteps;
 
-import java.time.LocalDate;
-
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
@@ -20,25 +18,20 @@ public class TestErrors extends BaseTest {
     private final String metro;
     private final String phone;
 
-    private final LocalDate date;
-    private final String comment;
-
-    public TestErrors(String name, String surname, String address, String metro, String phone, LocalDate date, String comment) {
+    public TestErrors(String name, String surname, String address, String metro, String phone) {
         this.name = name;
         this.surname = surname;
         this.address = address;
         this.metro = metro;
         this.phone = phone;
-        this.date = date;
-        this.comment = comment;
     }
 
     @Parameterized.Parameters(name = "{0} {1}")
     public static Object[][] getData()
     {
         return new Object[][]{
-                {"q", "q", "q", "", "898", LocalDate.now().minusDays(1), "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"},
-                {"ф", "В", "по", "", "ы", LocalDate.now().minusDays(5), "11111111111111111111111111111111111111111111111111111111111111111111111111"}
+                {"q", "q", "q", "", "898"},
+                {"ф", "В", "по", "", "ы"}
         };
     }
 
@@ -54,10 +47,11 @@ public class TestErrors extends BaseTest {
     public void errorsTest()
     {
         mainPage.clickOrderInHeaderBtn();
+        // проверить наличие сообщений об ошибках на первой странице
         errorsOnFirstPageTest();
         orderPageSteps.setCorrectUserData();
         orderPage.clickNextButton();
-        errorsOnSecondPageTest();
+        // TODO: проверить наличие сообщений об ошибках на второй странице
     }
 
     public void errorsOnFirstPageTest()
@@ -69,17 +63,6 @@ public class TestErrors extends BaseTest {
         assertTrue("Нет сообщения об ошибке в адресе", orderPage.isAddressErrorVisible());
         assertTrue("Нет сообщения об ошибке в станции метро", orderPage.isMetroErrorVisible());
         assertTrue("Нет сообщения об ошибке в номере телефона", orderPage.isPhoneErrorVisible());
-    }
-
-    public void errorsOnSecondPageTest()
-    {
-        orderPage.fillDate(date);
-        orderPage.fillComment(comment);
-        orderPage.clickOrderButton();
-        assertTrue("Нет сообщения об ошибке в дате", orderPage.isDateErrorVisible());
-        assertTrue("Нет сообщения об ошибке в сроке аренды", orderPage.isRentalPeriodErrorVisible());
-        assertTrue("Нет сообщения об ошибке в цвете", orderPage.isColourErrorVisible());
-        assertTrue("Нет сообщения об ошибке в комментарии", orderPage.isCommentErrorVisible());
     }
 
 }

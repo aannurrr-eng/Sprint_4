@@ -26,6 +26,7 @@ public class BaseTest {
         {
             startBrowserFirefox();
         }
+        driver.manage().window().maximize();
         mainPage = new MainPage(driver);
         mainPageSteps = new MainPageSteps(mainPage);
         mainPage.openPage();

@@ -5,9 +5,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class MainPage extends BasePage {
+import static constants.Url.HOME_URL;
 
-    private final String HOME_URL = "https://qa-scooter.praktikum-services.ru/";
+public class MainPage extends BasePage {
 
     //Кнопки со стрелочкой и вопросами
     private By questionBtns = By.className("accordion__button");

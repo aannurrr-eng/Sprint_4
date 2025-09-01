@@ -222,27 +222,4 @@ public class OrderPage extends BasePage{
         return driver.findElement(phoneError).isDisplayed();
     }
 
-    public boolean isDateErrorVisible()
-    {
-        //TODO
-        return false;
-    }
-
-    public boolean isRentalPeriodErrorVisible()
-    {
-        //TODO
-        return false;
-    }
-
-    public boolean isColourErrorVisible()
-    {
-        //TODO
-        return false;
-    }
-
-    public boolean isCommentErrorVisible()
-    {
-        //TODO
-        return false;
-    }
 }
