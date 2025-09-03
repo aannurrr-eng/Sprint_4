@@ -49,8 +49,6 @@ public class TestErrors extends BaseTest {
         mainPage.clickOrderInHeaderBtn();
         // проверить наличие сообщений об ошибках на первой странице
         errorsOnFirstPageTest();
-        orderPageSteps.setCorrectUserData();
-        orderPage.clickNextButton();
         // TODO: проверить наличие сообщений об ошибках на второй странице
     }
 

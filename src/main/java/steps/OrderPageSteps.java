@@ -7,12 +7,6 @@ import java.time.LocalDate;
 public class OrderPageSteps {
     private OrderPage orderPage;
 
-    private final String corrName = "Василий";
-    private final String corrSurname = "Дмитриев";
-    private final String corrAddress = "ул. Полянка";
-    private final String corrMetro = "Красносельская";
-    private final String corrPhone = "89098887766";
-
     public OrderPageSteps(OrderPage orderPage)
     {
         this.orderPage = orderPage;
@@ -43,15 +37,6 @@ public class OrderPageSteps {
         setRentalData(date, rentalPeriod, colour, comment);
         orderPage.clickOrderButton();
         orderPage.clickYesButton();
-    }
-
-    public void setCorrectUserData()
-    {
-        orderPage.fillName(corrName);
-        orderPage.fillSurname(corrSurname);
-        orderPage.fillAddress(corrAddress);
-        orderPage.fillMetro(corrMetro);
-        orderPage.fillPhone(corrPhone);
     }
 
 }
